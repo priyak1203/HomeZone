@@ -1,5 +1,12 @@
+import { FeaturedProducts, Hero } from '../components';
+
 function Landing() {
-  return <div>Landing</div>;
+  return (
+    <>
+      <Hero />
+      <FeaturedProducts />
+    </>
+  );
 }
 
 export default Landing;
