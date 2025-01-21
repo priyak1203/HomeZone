@@ -10,7 +10,22 @@ import {
   Register,
   SingleProduct,
 } from './pages';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools/production';
 
+// loaders
+import { loader as landingLoader } from './pages/Landing';
+
+// react query setup
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
+// router setup
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +35,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+        loader: landingLoader(queryClient),
       },
       {
         path: 'about',
@@ -53,9 +69,10 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
