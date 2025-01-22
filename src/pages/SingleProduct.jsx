@@ -40,7 +40,7 @@ function SingleProduct() {
         {/* PRODUCT INFO */}
         <section className="content">
           <h2>{title}</h2>
-          <h4>{company}</h4>
+          <h4 className="company">{company}</h4>
           <h5 className="price">{dollarsAmount}</h5>
           <p className="desc">{description}</p>
           <AddToCart product={product} />
@@ -65,6 +65,9 @@ const Wrapper = styled.main`
     display: grid;
     gap: 4rem;
     margin-top: 2rem;
+  }
+  .company {
+    color: var(--clr-grey-5);
   }
   .price {
     color: var(--clr-primary-5);
