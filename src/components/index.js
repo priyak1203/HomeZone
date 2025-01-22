@@ -6,3 +6,4 @@ export { default as Loading } from './Loading';
 export { default as Filters } from './Filters';
 export { default as ProductsContainer } from './ProductsContainer';
 export { default as AddToCart } from './AddToCart';
+export { default as Location } from './Location';
