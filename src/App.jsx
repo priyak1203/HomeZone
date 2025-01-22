@@ -15,6 +15,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools/production';
 
 // loaders
 import { loader as landingLoader } from './pages/Landing';
+import { loader as productsLoader } from './pages/Products';
 
 // react query setup
 const queryClient = new QueryClient({
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       {
         path: 'products',
         element: <Products />,
+        loader: productsLoader(queryClient),
       },
       {
         path: 'products/:id',
