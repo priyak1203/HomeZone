@@ -29,7 +29,7 @@ function CartTotal() {
             order total :<span>{formatPrice(cartTotal + shipping)}</span>
           </h4>
         </article>
-        {user.loggedIn ? (
+        {user ? (
           <button type="button" className="btn" onClick={placeOrder}>
             place order
           </button>

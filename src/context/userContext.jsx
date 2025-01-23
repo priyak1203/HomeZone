@@ -3,12 +3,7 @@ import { createContext } from 'react';
 import { toast } from 'react-toastify';
 
 const getUserFromLocalStorage = () => {
-  return (
-    JSON.parse(localStorage.getItem('user')) || {
-      username: '',
-      loggedIn: false,
-    }
-  );
+  return JSON.parse(localStorage.getItem('user')) || null;
 };
 
 const UserContext = createContext();
@@ -25,15 +20,15 @@ const UserProvider = ({ children }) => {
     setIsSidebarOpen(false);
   };
 
-  const setUserInfo = (username) => {
-    const user = { username, loggedIn: true };
-    setUser({ ...user });
+  const setUserInfo = (data) => {
+    const user = { ...data.user, token: data.jwt };
+    setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
-    toast.success(`Welcome ${username}`);
+    toast.success(`Welcome ${user.username}`);
   };
 
   const logoutUser = () => {
-    setUser({ username: '', loggedIn: false });
+    setUser(null);
     localStorage.removeItem('user');
     toast.success('Logged out!');
   };

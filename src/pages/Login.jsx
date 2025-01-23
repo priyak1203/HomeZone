@@ -3,6 +3,7 @@ import { FormInput, Logo } from '../components';
 import { useNavigate, useNavigation } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 import { toast } from 'react-toastify';
+import { customFetch } from '../utils/helpers';
 
 function Login() {
   const navigation = useNavigation();
@@ -12,18 +13,19 @@ function Login() {
 
   const { setUserInfo } = useUserContext();
 
-  const user = {
-    name: 'John Doe',
-    email: 'johndoe@gmail.com',
-    password: 'johndoe789',
+  const loginGuestUser = async () => {
+    const data = { identifier: 'test@test.com', password: 'secret' };
+
+    try {
+      const response = await customFetch.post('/auth/local', data);
+      setUserInfo(response.data);
+      navigate('/');
+    } catch (error) {
+      toast.error('guest user login error.please try later.');
+    }
   };
 
-  const guestLogin = () => {
-    setUserInfo('Guest');
-    return navigate('/');
-  };
-
-  const handleUserLogin = (e) => {
+  const handleUserLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const email = formData.get('email');
@@ -34,13 +36,21 @@ function Login() {
       return;
     }
 
-    if (email !== user.email || password !== user.password) {
-      toast.error('Invalid credentials');
+    try {
+      const response = await customFetch.post(`/auth/local`, {
+        identifier: email,
+        password,
+      });
+
+      setUserInfo(response.data);
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        'please double check your credentials';
+      toast.error(errorMessage);
       return;
     }
 
-    // set user in context
-    setUserInfo(user.name);
     return navigate('/');
   };
 
@@ -54,7 +64,7 @@ function Login() {
         <button type="submit" disabled={isSubmitting} className="btn form-btn ">
           {isSubmitting ? 'submitting...' : 'submit'}
         </button>
-        <button type="button" className="btn form-btn" onClick={guestLogin}>
+        <button type="button" className="btn form-btn" onClick={loginGuestUser}>
           guest user
         </button>
       </form>
