@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AmountButtons from './AmountButtons';
 import { useCartContext } from '../context/cartContext';
+import { toast } from 'react-toastify';
 
 function AddToCart({ product }) {
   const { colors, title, image, price } = product.attributes;
-  const { id } = product;
 
   const { addToCart } = useCartContext();
 
@@ -71,7 +71,14 @@ function AddToCart({ product }) {
           increase={increaseAmount}
           decrease={decreaseAmount}
         />
-        <Link to="/cart" className="btn" onClick={() => addToCart(cartProduct)}>
+        <Link
+          to="/cart"
+          className="btn"
+          onClick={() => {
+            addToCart(cartProduct);
+            toast.success('Item added to cart');
+          }}
+        >
           add to cart
         </Link>
       </div>

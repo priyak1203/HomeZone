@@ -3,16 +3,19 @@ import AmountButtons from './AmountButtons';
 import { formatPrice } from '../utils/helpers';
 import { FaTrash } from 'react-icons/fa';
 import { useCartContext } from '../context/cartContext';
+import { toast } from 'react-toastify';
 
 function CartItem({ image, title, color, amount, price, cartID }) {
   const { removeItem, toggleAmount } = useCartContext();
 
   const increase = () => {
     toggleAmount('inc', cartID);
+    toast.success('Cart updated');
   };
 
   const decrease = () => {
     toggleAmount('dec', cartID);
+    toast.success('Cart updated');
   };
 
   return (
@@ -33,7 +36,10 @@ function CartItem({ image, title, color, amount, price, cartID }) {
       <button
         type="button"
         className="remove-btn"
-        onClick={() => removeItem(cartID)}
+        onClick={() => {
+          removeItem(cartID);
+          toast.error('Item removed from cart');
+        }}
       >
         <FaTrash />
       </button>
