@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from 'react-router-dom';
-import { Loading, Navbar, Footer } from '../components';
+import { Loading, Navbar, Footer, Sidebar } from '../components';
 import styled from 'styled-components';
 
 function HomeLayout() {
@@ -9,6 +9,7 @@ function HomeLayout() {
   return (
     <>
       <Navbar />
+      <Sidebar />
       {isPageLoading ? (
         <Loading />
       ) : (

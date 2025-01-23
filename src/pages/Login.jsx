@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FormInput, Logo } from '../components';
 import { useNavigate, useNavigation } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
+import { toast } from 'react-toastify';
 
 function Login() {
   const navigation = useNavigation();
@@ -18,6 +19,7 @@ function Login() {
   };
 
   const guestLogin = () => {
+    setUserInfo('Guest');
     return navigate('/');
   };
 
@@ -39,7 +41,6 @@ function Login() {
 
     // set user in context
     setUserInfo(user.name);
-    // toast.success(`Welcome ${}`)
     return navigate('/');
   };
 

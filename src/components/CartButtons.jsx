@@ -6,15 +6,11 @@ import { useUserContext } from '../context/userContext';
 
 function CartButtons() {
   const { numItemsInCart } = useCartContext();
-  const { user, logoutUser } = useUserContext();
+  const { user, logoutUser, closeSidebar } = useUserContext();
 
   return (
     <Wrapper className="cart-btn-wrapper">
-      <Link
-        to="/cart"
-        className="cart-btn"
-        onClick={() => console.log('Close Sidebar')}
-      >
+      <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         cart
         <span className="cart-container">
           <FaShoppingCart />

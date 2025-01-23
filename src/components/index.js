@@ -12,3 +12,4 @@ export { default as Services } from './Services';
 export { default as CartContent } from './CartContent';
 export { default as Logo } from './Logo';
 export { default as FormInput } from './FormInput';
+export { default as Sidebar } from './Sidebar';

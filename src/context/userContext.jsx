@@ -15,6 +15,15 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(getUserFromLocalStorage());
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const openSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
 
   const setUserInfo = (username) => {
     const user = { username, loggedIn: true };
@@ -30,7 +39,16 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUserInfo, logoutUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUserInfo,
+        logoutUser,
+        isSidebarOpen,
+        openSidebar,
+        closeSidebar,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

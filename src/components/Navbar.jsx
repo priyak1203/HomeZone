@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import { links } from '../utils/constants';
 import Logo from './Logo';
 import CartButtons from './CartButtons';
+import { useUserContext } from '../context/userContext';
 
 function Navbar() {
+  const { openSidebar } = useUserContext();
+
   return (
     <Wrapper>
       <div className="nav-center">
@@ -13,11 +16,7 @@ function Navbar() {
           <Link to="/">
             <Logo />
           </Link>
-          <button
-            type="button"
-            className="nav-toggle"
-            onClick={() => console.log('Open Sidebar')}
-          >
+          <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
           </button>
         </div>
