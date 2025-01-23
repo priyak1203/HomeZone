@@ -1,8 +1,10 @@
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useCartContext } from '../context/cartContext';
 
 function CartButtons() {
+  const { numItemsInCart } = useCartContext();
   const user = true;
   return (
     <Wrapper className="cart-btn-wrapper">
@@ -14,7 +16,7 @@ function CartButtons() {
         cart
         <span className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">12</span>
+          <span className="cart-value">{numItemsInCart}</span>
         </span>
       </Link>
       {user ? (
