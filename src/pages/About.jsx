@@ -22,7 +22,7 @@ function About() {
           with its elegant, high-quality furniture.
         </p>
       </article>
-      <div>
+      <div className="map-container">
         <Location />
       </div>
     </Wrapper>
@@ -32,12 +32,10 @@ function About() {
 const Wrapper = styled.section`
   display: grid;
   gap: 4rem;
-  img {
-    width: 100%;
-    display: block;
-    border-radius: var(--radius);
-    height: 500px;
-    object-fit: cover;
+  .map-container {
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
   }
   p {
     line-height: 2;
@@ -54,6 +52,10 @@ const Wrapper = styled.section`
   }
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
+    .map-container {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 

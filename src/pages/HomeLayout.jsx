@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from 'react-router-dom';
-import { Header, Loading, Navbar } from '../components';
+import { Loading, Navbar, Footer } from '../components';
 import styled from 'styled-components';
 
 function HomeLayout() {
@@ -8,7 +8,6 @@ function HomeLayout() {
 
   return (
     <>
-      {/* <Header /> */}
       <Navbar />
       {isPageLoading ? (
         <Loading />
@@ -17,16 +16,13 @@ function HomeLayout() {
           <Outlet />
         </Wrapper>
       )}
+      <Footer />
     </>
   );
 }
 
 const Wrapper = styled.section`
-  /* border: 2px solid red; */
-  /* max-width: 72rem;
-  margin: 0 auto; */
-  /* padding: 5rem 2rem; */
-  /* padding: 0 2rem; */
+  padding-top: 0.5rem;
 `;
 
 export default HomeLayout;

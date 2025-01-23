@@ -7,3 +7,5 @@ export { default as Filters } from './Filters';
 export { default as ProductsContainer } from './ProductsContainer';
 export { default as AddToCart } from './AddToCart';
 export { default as Location } from './Location';
+export { default as Footer } from './Footer';
+export { default as Services } from './Services';
