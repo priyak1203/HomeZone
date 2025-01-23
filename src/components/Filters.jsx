@@ -1,4 +1,4 @@
-import { Form, Link, useLoaderData } from 'react-router-dom';
+import { Form, Link, useLoaderData, useSubmit } from 'react-router-dom';
 import FormInput from './FormInput';
 import styled from 'styled-components';
 
@@ -17,6 +17,7 @@ function Filters() {
             name="search"
             defaultValue={search}
           />
+
           {/* BUTTONS */}
           <button type="submit" className="btn form-btn">
             search
