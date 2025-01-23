@@ -3,16 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cartContext';
 import { useUserContext } from '../context/userContext';
+import { useQueryClient } from '@tanstack/react-query';
 
 function CartButtons() {
   const { numItemsInCart, clearCart } = useCartContext();
   const { user, logoutUser, closeSidebar } = useUserContext();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleLogout = () => {
     logoutUser();
     clearCart();
     navigate('/');
+    queryClient.removeQueries();
   };
 
   return (
