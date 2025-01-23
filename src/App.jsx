@@ -7,7 +7,6 @@ import {
   Landing,
   Login,
   Products,
-  Register,
   SingleProduct,
 } from './pages';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -62,11 +61,6 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <Login />,
-    errorElement: <Error />,
-  },
-  {
-    path: 'register',
-    element: <Register />,
     errorElement: <Error />,
   },
 ]);

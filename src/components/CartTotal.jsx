@@ -2,10 +2,17 @@ import styled from 'styled-components';
 import { useCartContext } from '../context/cartContext';
 import { formatPrice } from '../utils/helpers';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useUserContext } from '../context/userContext';
 
 function CartTotal() {
-  const { shipping, cartTotal } = useCartContext();
-  const user = true;
+  const { shipping, cartTotal, clearCart } = useCartContext();
+  const { user } = useUserContext();
+
+  const placeOrder = () => {
+    toast.success('Order placed successfully');
+    clearCart();
+  };
 
   return (
     <Wrapper>
@@ -22,18 +29,14 @@ function CartTotal() {
             order total :<span>{formatPrice(cartTotal + shipping)}</span>
           </h4>
         </article>
-        {user ? (
-          <button type="button" className="btn">
+        {user.loggedIn ? (
+          <button type="button" className="btn" onClick={placeOrder}>
             place order
           </button>
         ) : (
-          <button
-            type="button"
-            className="btn"
-            onClick={() => console.log('login')}
-          >
+          <Link to="/login" className="btn">
             login
-          </button>
+          </Link>
         )}
       </div>
     </Wrapper>

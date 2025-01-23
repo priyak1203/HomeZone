@@ -21,7 +21,7 @@ function Filters() {
           <button type="submit" className="btn form-btn">
             search
           </button>
-          <Link to="/products" className="btn form-btn">
+          <Link to="/products" className="btn form-btn reset-btn">
             reset
           </Link>
         </div>
@@ -58,6 +58,15 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     display: grid;
     place-items: center;
+    font-weight: 400;
+  }
+  .reset-btn {
+    background: var(--clr-grey-1);
+    color: var(--clr-white);
+  }
+  .reset-btn:hover {
+    background: var(--clr-grey-5);
+    color: var(--clr-grey-10);
   }
   @media (min-width: 992px) {
     .form-center {

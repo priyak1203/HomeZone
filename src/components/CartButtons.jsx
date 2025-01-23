@@ -2,10 +2,12 @@ import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cartContext';
+import { useUserContext } from '../context/userContext';
 
 function CartButtons() {
   const { numItemsInCart } = useCartContext();
-  const user = true;
+  const { user, logoutUser } = useUserContext();
+
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link
@@ -19,22 +21,14 @@ function CartButtons() {
           <span className="cart-value">{numItemsInCart}</span>
         </span>
       </Link>
-      {user ? (
-        <button
-          type="button"
-          className="auth-btn"
-          onClick={() => console.log('Logout user')}
-        >
+      {user.loggedIn ? (
+        <button type="button" className="auth-btn" onClick={logoutUser}>
           logout <FaUserMinus />
         </button>
       ) : (
-        <button
-          type="button"
-          className="auth-btn"
-          onClick={() => console.log('Login user')}
-        >
+        <Link to="/login" className="auth-btn">
           login <FaUserPlus />
-        </button>
+        </Link>
       )}
     </Wrapper>
   );
