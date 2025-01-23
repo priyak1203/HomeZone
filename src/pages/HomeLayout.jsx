@@ -8,7 +8,7 @@ function HomeLayout() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Navbar />
       {isPageLoading ? (
         <Loading />
