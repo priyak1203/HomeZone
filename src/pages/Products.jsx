@@ -4,24 +4,34 @@ import { customFetch } from '../utils/helpers';
 
 const url = '/products';
 
-const allProductsQuery = () => {
+const allProductsQuery = (queryParams) => {
+  const { search } = queryParams;
+
   return {
-    queryKey: ['products'],
-    queryFn: () => customFetch.get(url),
+    queryKey: ['products', search ?? ''],
+    queryFn: () => customFetch.get(url, { params: queryParams }),
   };
 };
 
-export const loader = (queryClient) => async () => {
-  try {
-    const response = await queryClient.ensureQueryData(allProductsQuery());
-    const products = response.data.data;
-    const meta = response.data.meta;
-    return { products, meta };
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
+export const loader =
+  (queryClient) =>
+  async ({ request }) => {
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+
+    try {
+      const response = await queryClient.ensureQueryData(
+        allProductsQuery(params)
+      );
+      const products = response.data.data;
+      const meta = response.data.meta;
+      return { products, meta, params };
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
 function Products() {
   return (

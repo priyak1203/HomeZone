@@ -43,6 +43,28 @@ Variables
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
   --fixed-width: 620px;
+
+  /* box shadow*/
+  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* rest of the vars */
+  --border-radius: 0.25rem;
+  --small-text: 0.875rem;
+  --letter-spacing: 1px;
+
+  /* additionals for form */
+  --grey-50: #f8fafc;
+  --grey-300: #cbd5e1;
+  --grey-900: #0f172a;
+  --background-secondary-color: var(--clr-grey-10);
+  --background-color: var(--grey-50);
+  --text-color: var(--grey-900);
 }
 /*
 =============== 
@@ -225,6 +247,46 @@ p {
   box-shadow: 0 0 0px 5px #fff;
 }
 
+/* loading styles */
+
 .loading-container {
   height: 90vh;
+}
+
+/* form styles */
+
+/* form */
+.form {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  background: var(--background-secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-2);
+  padding: 2rem 2.5rem;
+  margin: 3rem auto;
+}
+.form-row {
+  margin-bottom: 1rem;
+}
+.form-label {
+  display: block;
+  font-size: var(--small-text);
+  margin-bottom: 0.75rem;
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing);
+  line-height: 1.5;
+}
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  border: 1px solid var(--grey-300);
+  color: var(--text-color);
+}
+.form-input,
+.form-select,
+.form-btn {
+  height: 35px;
 }
